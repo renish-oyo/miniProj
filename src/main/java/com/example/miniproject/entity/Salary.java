@@ -1,4 +1,4 @@
-package com.example.miniproject.Entity;
+package com.example.miniproject.entity;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.example.miniproject.Entity;
+package com.example.miniproject.entity;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,26 +9,27 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="company")
-public class Company implements Serializable {
+@Table(name="department")
+public class Department implements Serializable{
     @Id
-    @Column(name = "comp_id")
-    private int comp_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "dept_id")
+    private int dept_id;
 
-    @Column(name = "comp_name")
-    private String comp_name;
+    @Column(name = "dept_name")
+    private String dept_name;
+
+    @Column(name = "comp_id")
+    private String comp_id;
+
+    @Column(name = "manager_id")
+    private String manager_id;
 
     @Column(name = "location")
     private String location;
 
-    @Column(name ="domain" )
-    private String domain;
-
     @Column(name = "phone")
     private String phone;
-
-    @Column(name = "revenue")
-    private String revenue;
 
     @Column(name = "active")
     private int active;
@@ -38,5 +39,4 @@ public class Company implements Serializable {
 
     @Column(name = "created_by")
     private String created_by;
-
 }

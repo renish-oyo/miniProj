@@ -1,4 +1,4 @@
-package com.example.miniproject.Configuration;
+package com.example.miniproject.configuration;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

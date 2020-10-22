@@ -1,6 +1,6 @@
-package com.example.miniproject.Repo;
+package com.example.miniproject.repository;
 
-import com.example.miniproject.Entity.Company;
+import com.example.miniproject.entity.Company;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
