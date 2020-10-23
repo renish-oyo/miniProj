@@ -3,8 +3,8 @@ package com.example.miniproject.models;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class SignUpResponse {

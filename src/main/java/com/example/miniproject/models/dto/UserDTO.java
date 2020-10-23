@@ -2,6 +2,8 @@ package com.example.miniproject.models.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.Pattern;
+
 @Data
 @Getter
 @Setter
@@ -11,6 +13,7 @@ public class UserDTO {
     private int user_id;
     private String firstName;
     private String lastName;
+    //@Pattern @JsonProperty @JsonInclude @NotNull
     private String email;
     private String password;
     private String phone;

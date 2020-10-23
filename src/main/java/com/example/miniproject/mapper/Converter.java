@@ -1,4 +1,4 @@
-package com.example.miniproject.converter;
+package com.example.miniproject.mapper;
 
 import com.example.miniproject.models.dto.UserDTO;
 import com.example.miniproject.models.entity.User;

@@ -1,26 +1,28 @@
 package com.example.miniproject.service;
 
-import com.example.miniproject.converter.Converter;
+import com.example.miniproject.mapper.Converter;
+import com.example.miniproject.exception.AlreadyExistsException;
 import com.example.miniproject.models.dto.UserDTO;
 import com.example.miniproject.models.entity.User;
 import com.example.miniproject.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class UserService {
     @Autowired
-    UserRepo urepo;
+    private UserRepo urepo;
 
     @Autowired
-    Converter convert;
+    private Converter convert;
 
-    public User save(UserDTO udto){
-        User u = new User();
-        u = convert.dtoToEntity(udto);
-        return urepo.save(u);
+    public User saveUser(UserDTO udto){
+        //checking if email already exists //existsByEmail
+        if(urepo.findByEmail(udto.getEmail())==null ){
+            return urepo.save(convert.dtoToEntity(udto));
+        }
+        else {
+            throw new AlreadyExistsException("abc");
+        }
     }
 }
