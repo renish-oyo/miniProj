@@ -1,4 +1,4 @@
-package com.example.miniproject.entity;
+package com.example.miniproject.models.entity;
 
 import javax.persistence.*;
 
@@ -6,6 +6,9 @@ import javax.persistence.*;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int user_id;
+
     @Column(name = "email")
     private String email;
 
