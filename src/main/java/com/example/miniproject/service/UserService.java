@@ -19,11 +19,8 @@ public class UserService {
     Converter convert;
 
     public User save(UserDTO udto){
-        System.out.println("2");
         User u = new User();
-        System.out.println("3");
         u = convert.dtoToEntity(udto);
-        System.out.println("4");
         return urepo.save(u);
     }
 }

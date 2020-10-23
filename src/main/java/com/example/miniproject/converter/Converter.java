@@ -8,15 +8,12 @@ import org.springframework.stereotype.Component;
 public class Converter {
 
     public UserDTO entityToDto(User u){
-        System.out.println("6");
         UserDTO udto = new UserDTO();
+        udto.setUser_id(u.getUser_id());
         udto.setEmail(u.getEmail());
         udto.setFirstName(u.getFirstName());
-        udto.setUser_id(u.getUser_id());
         udto.setLastName(u.getLastName());
-        udto.setPassword(u.getPassword());
         udto.setPhone(u.getPhone());
-        System.out.println("7");
         return udto;
     }
 
