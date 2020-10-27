@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/user")
 public class FirstController {
@@ -20,6 +22,12 @@ public class FirstController {
     private UserRepo userRepo;
     //,consumes = MediaType.APPLICATION_JSON_VALUE
     //(name = "first_name",defaultValue = "renish",required = false) @NotNull
+
+    @GetMapping(path = "/list")
+    public List<User> allUsersList(){
+        return (List<User>) userRepo.findAll();
+    }
+
 
     @PostMapping(path="/sign-up")
     public UserResponse createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
