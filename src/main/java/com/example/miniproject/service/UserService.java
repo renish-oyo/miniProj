@@ -25,22 +25,8 @@ public class UserService {
             return userRepo.save(mapper.dtoToEntity(userDTO));
         }
         else {
-            throw new AlreadyExistsException("Account already exists. Please Login");
+                return null;
         }
     }
 
-    public ResponseEntity<?> fetchUser(String email, String password){
-        if(userRepo.existsByEmail(email)){
-            User user = userRepo.findByEmail(email);
-            if(user.getPassword().equals(password)){
-                return new ResponseEntity<>(user, HttpStatus.OK);
-            }
-            else {
-                return new ResponseEntity<>(HttpStatus.valueOf("Invalid Password"));
-            }
-        }
-        else {
-            throw new AlreadyExistsException("Account does not exist. Please Sign up.");
-        }
-    }
 }

@@ -14,28 +14,36 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
+@CrossOrigin(origins = "http://localhost:8080")
 public class FirstController {
     @Autowired
     private UserService userService;
 
     @Autowired
     private UserRepo userRepo;
-    //,consumes = MediaType.APPLICATION_JSON_VALUE
-    //(name = "first_name",defaultValue = "renish",required = false) @NotNull
 
+    //Temporary path to check users saved in User Table
     @GetMapping(path = "/list")
     public List<User> allUsersList(){
         return (List<User>) userRepo.findAll();
     }
 
-
+    //user create account
     @PostMapping(path="/sign-up")
-    public UserResponse createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
+    public ResponseEntity<?> createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
         UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
         User user = userService.saveUser(userDTO);
-        return new UserResponse(user.getUserId(),user.getFirstName(),user.getLastName(), user.getEmail(), user.getPhone());
+        //user returns null when Account already exists.
+        if(user==null){
+            return new ResponseEntity<>("Account already exists. Please Login",HttpStatus.OK);
+        }
+        else{
+            UserResponse userResponse = new UserResponse(user.getUserId(),user.getFirstName(),user.getLastName(), user.getEmail(), user.getPhone());
+            return new ResponseEntity<>(userResponse,HttpStatus.OK);
+        }
     }
-    
+
+    //user login
     @GetMapping(path="/login")
     public ResponseEntity<?> loginAccount(@RequestParam(name="email") String email, @RequestParam(name="password") String password){
         if(userRepo.existsByEmail(email)){

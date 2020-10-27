@@ -13,23 +13,23 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
-    //@JsonProperty("user_id")
+    @JsonProperty("user_id")
     private int userId;
 
-    //@JsonProperty("first_name")
+    @JsonProperty("first_name")
     private String firstName;
 
-    //@JsonProperty("last_name")
+    @JsonProperty("last_name")
     private String lastName;
 
-    //@JsonProperty("email")
+    @JsonProperty("email")
     //@Pattern(message = "Email is invalid", regexp = "^.+@.+\\..+$")
     private String email;
 
-    //@JsonProperty("password")
+    @JsonProperty("password")
     private String password;
 
-    //@JsonProperty("phone")
+    @JsonProperty("phone")
     private String phone;
 
     public UserDTO(String firstName, String lastName, String email, String password) {
