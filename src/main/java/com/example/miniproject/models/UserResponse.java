@@ -7,8 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SignUpResponse {
-    private int user_id;
+public class UserResponse {
+    private int userId;
     private String firstName;
     private String lastName;
     private String email;

@@ -1,7 +1,5 @@
 package com.example.miniproject.models.entity;
-
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,7 +14,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int user_id;
+    private int userId;
 
     @Column(name = "first_name")
     private String firstName;

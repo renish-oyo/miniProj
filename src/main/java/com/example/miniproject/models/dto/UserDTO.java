@@ -1,5 +1,7 @@
 package com.example.miniproject.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.Pattern;
@@ -9,13 +11,25 @@ import javax.validation.constraints.Pattern;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
-    private int user_id;
+    //@JsonProperty("user_id")
+    private int userId;
+
+    //@JsonProperty("first_name")
     private String firstName;
+
+    //@JsonProperty("last_name")
     private String lastName;
-    //@Pattern @JsonProperty @JsonInclude @NotNull
+
+    //@JsonProperty("email")
+    //@Pattern(message = "Email is invalid", regexp = "^.+@.+\\..+$")
     private String email;
+
+    //@JsonProperty("password")
     private String password;
+
+    //@JsonProperty("phone")
     private String phone;
 
     public UserDTO(String firstName, String lastName, String email, String password) {
