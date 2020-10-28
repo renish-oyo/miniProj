@@ -1,23 +1,23 @@
 package com.example.miniproject.mapper;
 
-import com.example.miniproject.models.dto.UserDTO;
+import com.example.miniproject.models.dto.UserRequestDTO;
 import com.example.miniproject.models.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Mapper {
 
-    public UserDTO entityToDto(User user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setFirstName(user.getFirstName());
-        userDTO.setLastName(user.getLastName());
-        userDTO.setPhone(user.getPhone());
-        return userDTO;
+    public UserRequestDTO entityToDto(User user){
+        UserRequestDTO userRequestDTO = new UserRequestDTO();
+        userRequestDTO.setUserId(user.getUserId());
+        userRequestDTO.setEmail(user.getEmail());
+        userRequestDTO.setFirstName(user.getFirstName());
+        userRequestDTO.setLastName(user.getLastName());
+        userRequestDTO.setPhone(user.getPhone());
+        return userRequestDTO;
     }
 
-    public User dtoToEntity(UserDTO udto){
+    public User dtoToEntity(UserRequestDTO udto){
         User user = new User();
         user.setUserId(udto.getUserId());
         user.setEmail(udto.getEmail());
