@@ -16,9 +16,6 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private int userId;
 
-    @Column(name = "role_id")
-    private int roleID;
-
     @Column(name = "first_name")
     private String firstName;
 
