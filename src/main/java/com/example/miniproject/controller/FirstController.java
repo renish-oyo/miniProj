@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/user")
 public class FirstController {
     @Autowired
@@ -29,7 +29,6 @@ public class FirstController {
     }
 
     //user create account
-    @CrossOrigin
     @PostMapping(path="/sign-up")
     public ResponseEntity<?> createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
         UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
