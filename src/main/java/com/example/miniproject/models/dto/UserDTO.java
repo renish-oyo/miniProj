@@ -32,6 +32,9 @@ public class UserDTO {
     @JsonProperty("phone")
     private String phone;
 
+    @JsonProperty("role_id")
+    private int roleId;
+
     public UserDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

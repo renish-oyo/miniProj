@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/user")
-@CrossOrigin(origins = "http://localhost:8080")
 public class FirstController {
     @Autowired
     private UserService userService;
@@ -29,6 +29,7 @@ public class FirstController {
     }
 
     //user create account
+    @CrossOrigin
     @PostMapping(path="/sign-up")
     public ResponseEntity<?> createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
         UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
@@ -46,9 +47,12 @@ public class FirstController {
     //user login
     @GetMapping(path="/login")
     public ResponseEntity<?> loginAccount(@RequestParam(name="email") String email, @RequestParam(name="password") String password){
+        //check if email exists or not
         if(userRepo.existsByEmail(email)){
+            //email exist
             User user = userRepo.findByEmail(email);
             UserResponse userResponse = new UserResponse(user.getUserId(),user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone());
+            //matching passwords
             if(user.getPassword().equals(password)){
                 return new ResponseEntity<>(userResponse, HttpStatus.OK);
             }
@@ -57,6 +61,7 @@ public class FirstController {
             }
         }
         else {
+            //email does't exist
             return new ResponseEntity<>("Account does not exist. Please Sign up.",HttpStatus.NOT_FOUND);
         }
     }
