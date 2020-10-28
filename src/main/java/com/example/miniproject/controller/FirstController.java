@@ -29,9 +29,12 @@ public class FirstController {
     }
 
     //user create account
+    //public ResponseEntity<?> createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
+    //UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
+
     @PostMapping(path="/sign-up")
-    public ResponseEntity<?> createAccount(@RequestParam(name="first_name") String firstName, @RequestParam(name="last_name") String lastName, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
-        UserDTO userDTO = new UserDTO(firstName,lastName,email,password);
+    public ResponseEntity<?> createAccount(@RequestBody UserDTO userDTO){
+        System.out.println(userDTO.getEmail());
         User user = userService.saveUser(userDTO);
         //user returns null when Account already exists.
         if(user==null){
