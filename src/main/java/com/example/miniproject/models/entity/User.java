@@ -34,6 +34,6 @@ public class User implements Serializable {
     @Column(name="phone")
     private String phone;
 
-    @Column(name = "active",columnDefinition = "true")
+    @Column(name = "active")
     private boolean active;
 }
