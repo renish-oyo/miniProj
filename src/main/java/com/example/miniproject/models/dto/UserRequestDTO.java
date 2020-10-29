@@ -37,4 +37,6 @@ public class UserRequestDTO {
     @JsonProperty("role_id")
     private int roleId;
 
+    @JsonProperty("active")
+    private boolean active=true;
 }

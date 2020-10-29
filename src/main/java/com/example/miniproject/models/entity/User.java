@@ -33,4 +33,7 @@ public class User implements Serializable {
 
     @Column(name="phone")
     private String phone;
+
+    @Column(name = "active",columnDefinition = "true")
+    private boolean active;
 }

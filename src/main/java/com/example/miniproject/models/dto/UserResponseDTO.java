@@ -14,18 +14,19 @@ public class UserResponseDTO {
     @JsonProperty("user_id")
     private int userId;
 
-
     @JsonProperty("first_name")
     private String firstName;
 
     @JsonProperty("last_name")
     private String lastName;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("email")
     private String email;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("phone")
     private String phone;
+
+    @JsonProperty(value = "active")
+    private boolean active;
 }

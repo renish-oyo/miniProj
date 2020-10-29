@@ -1,31 +1,53 @@
 package com.example.miniproject.mapper;
-
 import com.example.miniproject.models.dto.UserRequestDTO;
+import com.example.miniproject.models.dto.UserResponseDTO;
 import com.example.miniproject.models.entity.User;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Mapper {
 
-    public UserRequestDTO entityToDto(User user){
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-        userRequestDTO.setUserId(user.getUserId());
-        userRequestDTO.setEmail(user.getEmail());
-        userRequestDTO.setFirstName(user.getFirstName());
-        userRequestDTO.setLastName(user.getLastName());
-        userRequestDTO.setPhone(user.getPhone());
-        return userRequestDTO;
+    public UserResponseDTO entityToDto(User user){
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setUserId(user.getUserId());
+        userResponseDTO.setEmail(user.getEmail());
+        userResponseDTO.setFirstName(user.getFirstName());
+        userResponseDTO.setLastName(user.getLastName());
+        userResponseDTO.setPhone(user.getPhone());
+        userResponseDTO.setActive(user.isActive());
+        return userResponseDTO;
     }
 
-    public User dtoToEntity(UserRequestDTO udto){
+    public User dtoToEntity(UserRequestDTO userRequestDTO){
         User user = new User();
-        user.setUserId(udto.getUserId());
-        user.setEmail(udto.getEmail());
-        user.setFirstName(udto.getFirstName());
-        user.setLastName(udto.getLastName());
-        user.setPhone(udto.getPhone());
-        user.setPassword(udto.getPassword());
+        user.setUserId(userRequestDTO.getUserId());
+        user.setEmail(userRequestDTO.getEmail());
+        user.setFirstName(userRequestDTO.getFirstName());
+        user.setLastName(userRequestDTO.getLastName());
+        user.setPhone(userRequestDTO.getPhone());
+        user.setPassword(userRequestDTO.getPassword());
+        user.setActive(userRequestDTO.isActive());
         return user;
     }
 
+    // map List of Entity to List of DTO
+    public List<UserResponseDTO> entityToDtoList(List<User> userList){
+        List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
+        for (User user : userList) {
+            userResponseDTOList.add(entityToDto(user));
+        }
+        return userResponseDTOList;
+    }
+
+    //map List of DTO to List of Entity
+    public List<User> dtoToEntityList(List<UserRequestDTO> userRequestDTOList){
+        List<User> userList = new ArrayList<>();
+        for(UserRequestDTO userRequestDTO : userRequestDTOList){
+            userList.add(dtoToEntity(userRequestDTO));
+        }
+        return userList;
+    }
 }
