@@ -53,7 +53,7 @@ public class UserController {
     }
 
     //user login
-    @GetMapping(path="/login")
+    @PostMapping(path="/login")
     public ResponseEntity<?> loginAccount(@Valid @RequestBody UserRequestDTO userRequestDTO){
         //check if email exists or not
         if(userRepository.existsByEmail(userRequestDTO.getEmail())){
