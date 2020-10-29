@@ -19,9 +19,9 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    private final UserService userService;
-    private final UserRepository userRepository;
-    private final Mapper mapper;
+    private  UserService userService;
+    private  UserRepository userRepository;
+    private  Mapper mapper;
 
     //Constructor injection is better than field injection
     @Autowired
@@ -75,11 +75,11 @@ public class UserController {
 
     //List only Active Users
     @GetMapping(path = "/active")
-    public List<User> activeUsers(){
-        return userRepository.findAllByActive(true);
-        //List<User> userList = userRepository.findAllByActive(true);
-        ////Converting List of Entity to List of DTO
-        //return mapper.entityToDtoList(userList);
+    public List<UserResponseDTO> activeUsers(){
+
+        List<User> userList = userRepository.findAllByActive(true);
+        //Converting List of Entity to List of DTO
+        return mapper.entityToDtoList(userList);
     }
 
     //List of Inactive Users
