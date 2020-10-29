@@ -19,9 +19,9 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    private  UserService userService;
-    private  UserRepository userRepository;
-    private  Mapper mapper;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final Mapper mapper;
 
     //Constructor injection is better than field injection
     @Autowired
