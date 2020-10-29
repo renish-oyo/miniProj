@@ -3,7 +3,7 @@ package com.example.miniproject.controller;
 import com.example.miniproject.models.dto.UserResponseDTO;
 import com.example.miniproject.models.dto.UserRequestDTO;
 import com.example.miniproject.models.entity.User;
-import com.example.miniproject.repository.UserRepo;
+import com.example.miniproject.repository.UserRepository;
 import com.example.miniproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,19 +16,22 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/user")
 public class FirstController {
-    @Autowired
-    private UserService userService;
 
+    private final UserService userService;
+    private final UserRepository userRepository;
+
+    //Constructor injection is better than field injection
     @Autowired
-    private UserRepo userRepo;
+    public FirstController(UserService userService,UserRepository userRepository) {
+        this.userService=userService;
+        this.userRepository=userRepository;
+    }
 
     //Temporary path to check users saved in User Table
     @GetMapping(path = "/list")
     public List<User> allUsersList(){
-        return (List<User>) userRepo.findAll();
+        return (List<User>) userRepository.findAll();
     }
-
-
 
     //user create account
     @PostMapping(path="/sign-up")
@@ -44,18 +47,15 @@ public class FirstController {
         }
     }
 
-
-
     //user login
     @GetMapping(path="/login")
-    public ResponseEntity<?> loginAccount(@RequestParam(name="email") String email, @RequestParam(name="password") String password){
+    public ResponseEntity<?> loginAccount(@RequestBody UserRequestDTO userRequestDTO){
         //check if email exists or not
-        if(userRepo.existsByEmail(email)){
-            //email exist
-            User user = userRepo.findByEmail(email);
+        if(userRepository.existsByEmail(userRequestDTO.getEmail())){
+            User user = userRepository.findByEmail(userRequestDTO.getEmail());
             UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(),user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone());
             //matching passwords
-            if(user.getPassword().equals(password)){
+            if(user.getPassword().equals(userRequestDTO.getPassword())){
                 return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
             }
             else {
@@ -63,7 +63,7 @@ public class FirstController {
             }
         }
         else {
-            //email does't exist
+            //email doesn't exist
             return new ResponseEntity<>("Account does not exist. Please Sign up.",HttpStatus.NOT_FOUND);
         }
     }

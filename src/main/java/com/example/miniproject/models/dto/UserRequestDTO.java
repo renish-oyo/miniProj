@@ -24,7 +24,6 @@ public class UserRequestDTO {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("email")
-    //@Pattern(message = "Email is invalid", regexp = "^.+@.+\\..+$")
     private String email;
 
     @JsonProperty("password")
