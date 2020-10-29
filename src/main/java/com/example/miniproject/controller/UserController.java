@@ -15,14 +15,14 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/user")
-public class FirstController {
+public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
 
     //Constructor injection is better than field injection
     @Autowired
-    public FirstController(UserService userService,UserRepository userRepository) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService=userService;
         this.userRepository=userRepository;
     }
