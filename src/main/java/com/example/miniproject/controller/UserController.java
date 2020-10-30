@@ -40,7 +40,6 @@ public class UserController {
     //user create account
     @PostMapping(path="/sign-up")
     public ResponseEntity<?> createAccount(@Valid @RequestBody UserRequestDTO userRequestDTO){
-        System.out.println(userRequestDTO.getAadharNumber());
         User user = userService.saveUser(userRequestDTO);
         //user returns null when Account already exists.
         if(user==null){
