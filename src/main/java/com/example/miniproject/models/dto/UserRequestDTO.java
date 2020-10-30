@@ -42,7 +42,7 @@ public class UserRequestDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String phone;
 
-    @JsonProperty("aadhar_numer")
+    @JsonProperty("aadhar_number")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String aadharNumber;
 
