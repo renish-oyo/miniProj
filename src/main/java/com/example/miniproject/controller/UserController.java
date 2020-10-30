@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -87,5 +88,17 @@ public class UserController {
         List<User> userList = userRepository.findAllByActive(false);
         //Converting List of Entity to List of DTO
         return mapper.entityToDtoList(userList);
+    }
+
+    //List of Users Credential
+    @GetMapping(path = "/credentials")
+    public List<UserRequestDTO> credentials(){
+        List<User> userList = (List<User>) userRepository.findAll();
+        List<UserRequestDTO> userRequestDTOList = new ArrayList<>();
+        for (User user: userList) {
+            UserRequestDTO userRequestDTO = new UserRequestDTO(user.getUserId(),user.getEmail(),user.getPassword());
+            userRequestDTOList.add(userRequestDTO);
+        }
+        return userRequestDTOList;
     }
 }
