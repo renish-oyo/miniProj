@@ -20,10 +20,12 @@ public class UserResponseDTO {
     @JsonProperty("last_name")
     private String lastName;
 
+    @JsonProperty("gender")
+    private String gender;
+
     @JsonProperty("email")
     private String email;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("phone")
     private String phone;
 

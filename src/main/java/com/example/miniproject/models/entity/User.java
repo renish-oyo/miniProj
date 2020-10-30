@@ -1,4 +1,5 @@
 package com.example.miniproject.models.entity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,9 @@ public class User implements Serializable {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "email",unique = true)
     private String email;

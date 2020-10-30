@@ -24,6 +24,9 @@ public class UserRequestDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String lastName;
 
+    @JsonProperty("gender")
+    private String gender;
+
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("email")
     private String email;
@@ -33,7 +36,6 @@ public class UserRequestDTO {
     private String password;
 
     @JsonProperty("phone")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String phone;
 
     @JsonProperty("aadhar_numer")
