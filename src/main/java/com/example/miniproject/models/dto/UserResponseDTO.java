@@ -27,6 +27,24 @@ public class UserResponseDTO {
     @JsonProperty("phone")
     private String phone;
 
+    @JsonProperty("aadhar_numer")
+    private String aadharNumber;
+
+    @JsonProperty("pan_number")
+    private String panNumber;
+
+    @JsonProperty("address")
+    private String address;
+
+    @JsonProperty("bank_name")
+    private String bankName;
+
+    @JsonProperty("bank_account_number")
+    private String bankAccountNumber;
+
+    @JsonProperty("bank_ifsc_code")
+    private String banKIfscCode;
+
     @JsonProperty(value = "active")
     private boolean active;
 }

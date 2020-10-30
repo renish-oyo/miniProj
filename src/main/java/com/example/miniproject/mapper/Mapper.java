@@ -18,6 +18,12 @@ public class Mapper {
         userResponseDTO.setLastName(user.getLastName());
         userResponseDTO.setPhone(user.getPhone());
         userResponseDTO.setActive(user.isActive());
+        userResponseDTO.setAadharNumber(user.getAadharNumber());
+        userResponseDTO.setPanNumber(user.getPanNumber());
+        userResponseDTO.setAddress(user.getAddress());
+        userResponseDTO.setBankName(user.getBankName());
+        userResponseDTO.setBankAccountNumber(user.getBankAccountNumber());
+        userResponseDTO.setBanKIfscCode(user.getBanKIfscCode());
         return userResponseDTO;
     }
 
@@ -30,6 +36,12 @@ public class Mapper {
         user.setPhone(userRequestDTO.getPhone());
         user.setPassword(userRequestDTO.getPassword());
         user.setActive(userRequestDTO.isActive());
+        user.setAddress(userRequestDTO.getAddress());
+        user.setAadharNumber(userRequestDTO.getAadharNumber());
+        user.setPanNumber(userRequestDTO.getPanNumber());
+        user.setBankName(userRequestDTO.getBankName());
+        user.setBankAccountNumber(userRequestDTO.getBankAccountNumber());
+        user.setBanKIfscCode(userRequestDTO.getBanKIfscCode());
         return user;
     }
 

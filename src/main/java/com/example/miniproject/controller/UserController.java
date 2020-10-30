@@ -40,14 +40,14 @@ public class UserController {
     //user create account
     @PostMapping(path="/sign-up")
     public ResponseEntity<?> createAccount(@Valid @RequestBody UserRequestDTO userRequestDTO){
-        System.out.println(userRequestDTO.isActive());
+        System.out.println(userRequestDTO.getAadharNumber());
         User user = userService.saveUser(userRequestDTO);
         //user returns null when Account already exists.
         if(user==null){
             return new ResponseEntity<>("Account already exists. Please Login",HttpStatus.OK);
         }
         else{
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(),user.getFirstName(),user.getLastName(), user.getEmail(), user.getPhone(), user.isActive());
+            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(),user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(),user.getAadharNumber(),user.getPanNumber(),user.getAddress(),user.getBankName(),user.getBankAccountNumber(),user.getBanKIfscCode(), user.isActive());
             return new ResponseEntity<>(userResponseDTO,HttpStatus.OK);
         }
     }
@@ -58,7 +58,7 @@ public class UserController {
         //check if email exists or not
         if(userRepository.existsByEmail(userRequestDTO.getEmail())){
             User user = userRepository.findByEmail(userRequestDTO.getEmail());
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(),user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(), user.isActive());
+            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(),user.getFirstName(), user.getLastName(), user.getEmail(), user.getPhone(),user.getAadharNumber(),user.getPanNumber(),user.getAddress(),user.getBankName(),user.getBankAccountNumber(),user.getBanKIfscCode(), user.isActive());
             //matching passwords
             if(user.getPassword().equals(userRequestDTO.getPassword())){
                 return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
