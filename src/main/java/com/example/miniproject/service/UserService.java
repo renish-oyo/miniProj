@@ -7,6 +7,8 @@ import com.example.miniproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -25,6 +27,9 @@ public class UserService {
         }
     }
 
-
-
+    public User updateUser(UserRequestDTO userRequestDTO){
+        Optional<User> user = userRepository.findById(userRequestDTO.getUserId());
+        userRequestDTO.setPassword(user.get().getPassword());
+        return userRepository.save(mapper.dtoToEntity(userRequestDTO));
+    }
 }

@@ -29,7 +29,7 @@ public class UserResponseDTO {
     @JsonProperty("phone")
     private String phone;
 
-    @JsonProperty("aadhar_numer")
+    @JsonProperty("aadhar_number")
     private String aadharNumber;
 
     @JsonProperty("pan_number")
