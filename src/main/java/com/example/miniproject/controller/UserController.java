@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,7 +76,6 @@ public class UserController {
     //List only Active Users
     @GetMapping(path = "/active")
     public List<UserResponseDTO> activeUsers() {
-
         List<User> userList = userRepository.findAllByActive(true);
         //Converting List of Entity to List of DTO
         return mapper.entityToDtoList(userList);
@@ -99,6 +100,18 @@ public class UserController {
         }
         return userRequestDTOList;
     }
+
+
+
+    //upload image to Database
+    @PostMapping("/upload")
+    public ResponseEntity<?> uploadImage(@RequestBody MultipartFile image) throws IOException {
+        byte[] byteImage = image.getBytes();
+        return new ResponseEntity<>("File name "+image.getOriginalFilename(),HttpStatus.OK);
+    }
+
+
+
 
     //Update User Details
     @PutMapping("/update-user")
