@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -102,8 +103,51 @@ public class UserController {
     //Update User Details
     @PutMapping("/update-user")
     public UserResponseDTO updateUser(@RequestBody UserRequestDTO userRequestDTO) {
-        System.out.println(userRequestDTO);
-        User user = userService.updateUser(userRequestDTO);
-        return mapper.entityToDto(user);
+
+        //extracting user from db using userId
+        Optional<User> user = userRepository.findById(userRequestDTO.getUserId());
+
+        //null fields are replaced with it's original value
+        userRequestDTO.setPassword(user.get().getPassword());
+        if(userRequestDTO.getFirstName()==null){
+            userRequestDTO.setFirstName(user.get().getFirstName());
+        }
+        if(userRequestDTO.getLastName()==null) {
+            userRequestDTO.setLastName(user.get().getLastName());
+        }
+        if(userRequestDTO.getAadharNumber()==null) {
+            userRequestDTO.setAadharNumber(user.get().getAadharNumber());
+        }
+        if(userRequestDTO.getEmail()==null) {
+            userRequestDTO.setEmail(user.get().getEmail());
+        }
+        if(userRequestDTO.getPanNumber()==null) {
+            userRequestDTO.setPanNumber(user.get().getPanNumber());
+        }
+        if(userRequestDTO.getAddress()==null) {
+            userRequestDTO.setAddress(user.get().getAddress());
+        }
+        if(userRequestDTO.getBankAccountNumber()==null) {
+            userRequestDTO.setBankAccountNumber(user.get().getBankAccountNumber());
+        }
+        if(userRequestDTO.getBankName()==null) {
+            userRequestDTO.setBankName(user.get().getBankName());
+        }
+        if(userRequestDTO.getBanKIfscCode()==null) {
+            userRequestDTO.setBanKIfscCode(user.get().getBanKIfscCode());
+        }
+        if(userRequestDTO.getGender()==null) {
+            userRequestDTO.setGender(user.get().getGender());
+        }
+        if(userRequestDTO.getPhone()==null) {
+            userRequestDTO.setPhone(user.get().getPhone());
+        }
+        if(userRequestDTO.getRole()==null){
+            userRequestDTO.setRole(user.get().getRole());
+        }
+
+
+        //user is updated and then mapped to dto
+        return mapper.entityToDto(userService.updateUser(userRequestDTO));
     }
 }

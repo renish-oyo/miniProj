@@ -1,6 +1,7 @@
 package com.example.miniproject.service;
 
 import com.example.miniproject.mapper.Mapper;
+import com.example.miniproject.mapper.UpdateDetailsMapper;
 import com.example.miniproject.models.dto.UserRequestDTO;
 import com.example.miniproject.models.entity.User;
 import com.example.miniproject.repository.UserRepository;
@@ -28,8 +29,6 @@ public class UserService {
     }
 
     public User updateUser(UserRequestDTO userRequestDTO){
-        Optional<User> user = userRepository.findById(userRequestDTO.getUserId());
-        userRequestDTO.setPassword(user.get().getPassword());
         return userRepository.save(mapper.dtoToEntity(userRequestDTO));
     }
 }
