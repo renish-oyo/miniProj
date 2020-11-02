@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -61,7 +62,8 @@ public class UserRequestDTO {
     @JsonProperty("role")
     private String role;
 
-
+    @JsonProperty(value = "image")
+    private byte[] image;
 
     public UserRequestDTO(int userId,String email, String password) {
         this.userId=userId;

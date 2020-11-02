@@ -1,6 +1,7 @@
 package com.example.miniproject.controller;
 
 import com.example.miniproject.mapper.Mapper;
+import com.example.miniproject.mapper.UpdateMapper;
 import com.example.miniproject.models.dto.UserRequestDTO;
 import com.example.miniproject.models.dto.UserResponseDTO;
 import com.example.miniproject.models.entity.User;
@@ -26,13 +27,15 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final Mapper mapper;
+    private final UpdateMapper updateMapper;
 
     //Constructor injection is better than field injection
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository, Mapper mapper) {
+    public UserController(UserService userService, UserRepository userRepository, Mapper mapper,UpdateMapper updateMapper) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.mapper = mapper;
+        this.updateMapper=updateMapper;
     }
 
     //Temporary path to check users saved in User Table
@@ -49,7 +52,7 @@ public class UserController {
         if (user == null) {
             return new ResponseEntity<>("Account already exists. Please Login", HttpStatus.OK);
         } else {
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole());
+            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole(),user.getImage());
             return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
         }
     }
@@ -60,7 +63,7 @@ public class UserController {
         //check if email exists or not
         if (userRepository.existsByEmail(userRequestDTO.getEmail())) {
             User user = userRepository.findByEmail(userRequestDTO.getEmail());
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole());
+            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole(),user.getImage());
             //matching passwords
             if (user.getPassword().equals(userRequestDTO.getPassword())) {
                 return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
@@ -104,62 +107,23 @@ public class UserController {
 
 
     //upload image to Database
-    @PostMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestBody MultipartFile image) throws IOException {
-        byte[] byteImage = image.getBytes();
-        return new ResponseEntity<>("File name "+image.getOriginalFilename(),HttpStatus.OK);
+    @PutMapping("/upload")
+    public ResponseEntity<?> uploadImage(@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {
+
+        UserRequestDTO userRequestDTO = new UserRequestDTO();
+        userRequestDTO.setUserId(user_id);
+        userRequestDTO.setImage(image.getBytes());
+
+        userRequestDTO=updateMapper.map(userRequestDTO);
+        User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
+        return new ResponseEntity<>(mapper.entityToDto(user),HttpStatus.OK);
     }
-
-
-
 
     //Update User Details
     @PutMapping("/update-user")
     public UserResponseDTO updateUser(@RequestBody UserRequestDTO userRequestDTO) {
+        userRequestDTO=updateMapper.map(userRequestDTO);
         System.out.println(userRequestDTO);
-        //extracting user from db using userId
-        Optional<User> user = userRepository.findById(userRequestDTO.getUserId());
-
-        //null fields are replaced with it's original value
-        userRequestDTO.setPassword(user.get().getPassword());
-        if(userRequestDTO.getFirstName()==null){
-            userRequestDTO.setFirstName(user.get().getFirstName());
-        }
-        if(userRequestDTO.getLastName()==null) {
-            userRequestDTO.setLastName(user.get().getLastName());
-        }
-        if(userRequestDTO.getAadharNumber()==null) {
-            userRequestDTO.setAadharNumber(user.get().getAadharNumber());
-        }
-        if(userRequestDTO.getEmail()==null) {
-            userRequestDTO.setEmail(user.get().getEmail());
-        }
-        if(userRequestDTO.getPanNumber()==null) {
-            userRequestDTO.setPanNumber(user.get().getPanNumber());
-        }
-        if(userRequestDTO.getAddress()==null) {
-            userRequestDTO.setAddress(user.get().getAddress());
-        }
-        if(userRequestDTO.getBankAccountNumber()==null) {
-            userRequestDTO.setBankAccountNumber(user.get().getBankAccountNumber());
-        }
-        if(userRequestDTO.getBankName()==null) {
-            userRequestDTO.setBankName(user.get().getBankName());
-        }
-        if(userRequestDTO.getBanKIfscCode()==null) {
-            userRequestDTO.setBanKIfscCode(user.get().getBanKIfscCode());
-        }
-        if(userRequestDTO.getGender()==null) {
-            userRequestDTO.setGender(user.get().getGender());
-        }
-        if(userRequestDTO.getPhone()==null) {
-            userRequestDTO.setPhone(user.get().getPhone());
-        }
-        if(userRequestDTO.getRole()==null){
-            userRequestDTO.setRole(user.get().getRole());
-        }
-
-        //user is updated and then mapped to dto
         return mapper.entityToDto(userService.updateUser(userRequestDTO));
     }
 }

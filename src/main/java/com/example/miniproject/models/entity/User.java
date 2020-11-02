@@ -1,6 +1,8 @@
 package com.example.miniproject.models.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -62,4 +64,9 @@ public class User implements Serializable {
     @Lob
     @Column(name = "image")
     private byte[] image;
+
+    public User(int uid, byte[] byteImage) {
+        this.image=byteImage;
+        this.userId=uid;
+    }
 }

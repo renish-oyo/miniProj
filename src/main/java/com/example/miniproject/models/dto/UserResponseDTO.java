@@ -3,6 +3,7 @@ package com.example.miniproject.models.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @AllArgsConstructor
@@ -52,5 +53,8 @@ public class UserResponseDTO {
 
     @JsonProperty("role")
     private String role;
+
+    @JsonProperty(value = "image")
+    private byte[] image;
 
 }

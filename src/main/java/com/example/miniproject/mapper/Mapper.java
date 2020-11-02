@@ -26,6 +26,7 @@ public class Mapper {
         userResponseDTO.setBanKIfscCode(user.getBanKIfscCode());
         userResponseDTO.setGender(user.getGender());
         userResponseDTO.setRole(user.getRole());
+        userResponseDTO.setImage(user.getImage());
         return userResponseDTO;
     }
 
@@ -46,6 +47,7 @@ public class Mapper {
         user.setBanKIfscCode(userRequestDTO.getBanKIfscCode());
         user.setGender(userRequestDTO.getGender());
         user.setRole(userRequestDTO.getRole());
+        user.setImage(userRequestDTO.getImage());
         return user;
     }
 

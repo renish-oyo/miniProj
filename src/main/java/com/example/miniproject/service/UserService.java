@@ -1,14 +1,11 @@
 package com.example.miniproject.service;
 
 import com.example.miniproject.mapper.Mapper;
-import com.example.miniproject.mapper.UpdateDetailsMapper;
 import com.example.miniproject.models.dto.UserRequestDTO;
 import com.example.miniproject.models.entity.User;
 import com.example.miniproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
