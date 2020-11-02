@@ -61,6 +61,8 @@ public class UserRequestDTO {
     @JsonProperty("role")
     private String role;
 
+
+
     public UserRequestDTO(int userId,String email, String password) {
         this.userId=userId;
         this.email=email;

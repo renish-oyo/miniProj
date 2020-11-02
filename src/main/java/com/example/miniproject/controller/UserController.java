@@ -103,7 +103,7 @@ public class UserController {
     //Update User Details
     @PutMapping("/update-user")
     public UserResponseDTO updateUser(@RequestBody UserRequestDTO userRequestDTO) {
-
+        System.out.println(userRequestDTO);
         //extracting user from db using userId
         Optional<User> user = userRepository.findById(userRequestDTO.getUserId());
 
@@ -145,7 +145,6 @@ public class UserController {
         if(userRequestDTO.getRole()==null){
             userRequestDTO.setRole(user.get().getRole());
         }
-
 
         //user is updated and then mapped to dto
         return mapper.entityToDto(userService.updateUser(userRequestDTO));

@@ -58,4 +58,8 @@ public class User implements Serializable {
 
     @Column(name = "role")
     private String role;
+
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
 }
