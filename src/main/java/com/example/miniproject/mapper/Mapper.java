@@ -25,6 +25,7 @@ public class Mapper {
         userResponseDTO.setBankAccountNumber(user.getBankAccountNumber());
         userResponseDTO.setBanKIfscCode(user.getBanKIfscCode());
         userResponseDTO.setGender(user.getGender());
+        userResponseDTO.setRole(user.getRole());
         return userResponseDTO;
     }
 
@@ -44,6 +45,7 @@ public class Mapper {
         user.setBankAccountNumber(userRequestDTO.getBankAccountNumber());
         user.setBanKIfscCode(userRequestDTO.getBanKIfscCode());
         user.setGender(userRequestDTO.getGender());
+        user.setRole(userRequestDTO.getRole());
         return user;
     }
 

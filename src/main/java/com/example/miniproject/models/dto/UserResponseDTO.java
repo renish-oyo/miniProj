@@ -50,4 +50,7 @@ public class UserResponseDTO {
     @JsonProperty(value = "active")
     private boolean active;
 
+    @JsonProperty("role")
+    private String role;
+
 }

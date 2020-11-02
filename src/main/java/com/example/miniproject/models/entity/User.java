@@ -55,4 +55,7 @@ public class User implements Serializable {
 
     @Column(name = "active")
     private boolean active;
+
+    @Column(name = "role")
+    private String role;
 }
