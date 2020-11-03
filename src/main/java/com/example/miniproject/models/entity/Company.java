@@ -2,6 +2,8 @@ package com.example.miniproject.models.entity;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,9 +36,13 @@ public class Company implements Serializable {
     private int active;
 
     @Column(name = "created_at")
-    private String created_at;
+    private Date created_at;
 
     @Column(name = "created_by")
     private String created_by;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "comp_dept_fk",referencedColumnName = "dept_id")
+    List<Department> departmentList;
 
 }

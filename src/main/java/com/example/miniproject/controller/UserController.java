@@ -17,7 +17,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -110,11 +109,16 @@ public class UserController {
     @PutMapping("/upload")
     public ResponseEntity<?> uploadImage(@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {
 
+        System.out.println(user_id);
+
         UserRequestDTO userRequestDTO = new UserRequestDTO();
         userRequestDTO.setUserId(user_id);
         userRequestDTO.setImage(image.getBytes());
 
+        System.out.println(userRequestDTO);
         userRequestDTO=updateMapper.map(userRequestDTO);
+        System.out.println(userRequestDTO);
+
         User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
         return new ResponseEntity<>(mapper.entityToDto(user),HttpStatus.OK);
     }
