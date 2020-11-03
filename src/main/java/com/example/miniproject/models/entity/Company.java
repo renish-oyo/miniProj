@@ -41,8 +41,4 @@ public class Company implements Serializable {
     @Column(name = "created_by")
     private String created_by;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "comp_dept_fk",referencedColumnName = "dept_id")
-    List<Department> departmentList;
-
 }

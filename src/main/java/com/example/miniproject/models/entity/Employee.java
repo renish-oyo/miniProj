@@ -12,13 +12,6 @@ import java.io.Serializable;
 @Table(name="employee")
 public class Employee implements Serializable{
 
-    private enum Desig{
-        SDE,
-        CEO,
-        SDE_2,
-        Founder
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
@@ -41,7 +34,7 @@ public class Employee implements Serializable{
     private String email;
 
     @Column(name = "designation")
-    private Desig designation;
+    private Designation designation;
 
     @Column(name = "active")
     private int active;
