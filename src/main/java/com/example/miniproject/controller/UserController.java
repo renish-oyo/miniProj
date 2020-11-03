@@ -109,17 +109,17 @@ public class UserController {
     @PutMapping("/upload")
     public ResponseEntity<?> uploadImage(@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {
 
-        System.out.println(user_id);
+        System.out.println("User_Id :"+user_id);
 
         UserRequestDTO userRequestDTO = new UserRequestDTO();
         userRequestDTO.setUserId(user_id);
         userRequestDTO.setImage(image.getBytes());
+        System.out.println(userRequestDTO);
 
-        System.out.println(userRequestDTO);
         userRequestDTO=updateMapper.map(userRequestDTO);
-        System.out.println(userRequestDTO);
 
         User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
+        System.out.println(mapper.entityToDto(user));
         return new ResponseEntity<>(mapper.entityToDto(user),HttpStatus.OK);
     }
 
