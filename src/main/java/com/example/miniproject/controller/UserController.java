@@ -107,20 +107,24 @@ public class UserController {
 
     //upload image to Database
     @PutMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {
+    public ResponseEntity<?> uploadImage (@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {
 
-        System.out.println("User_Id :"+user_id);
+        System.out.println("Size : "+ image.getSize());
+        if(image.getSize() < 1048000) {
+            UserRequestDTO userRequestDTO = new UserRequestDTO();
+            userRequestDTO.setUserId(user_id);
+            userRequestDTO.setImage(image.getBytes());
+            System.out.println(userRequestDTO);
 
-        UserRequestDTO userRequestDTO = new UserRequestDTO();
-        userRequestDTO.setUserId(user_id);
-        userRequestDTO.setImage(image.getBytes());
-        System.out.println(userRequestDTO);
+            userRequestDTO = updateMapper.map(userRequestDTO);
 
-        userRequestDTO=updateMapper.map(userRequestDTO);
-
-        User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
-        System.out.println(mapper.entityToDto(user));
-        return new ResponseEntity<>(mapper.entityToDto(user),HttpStatus.OK);
+            User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
+            System.out.println(mapper.entityToDto(user));
+            return new ResponseEntity<>(mapper.entityToDto(user), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Image Size Should Be Less Than 1MB.",HttpStatus.OK);
+        }
     }
 
     //Update User Details
