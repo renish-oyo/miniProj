@@ -1,23 +1,25 @@
 package com.example.miniproject.models.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Optional;
+import javax.validation.constraints.NotNull;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserRequestDTO {
+public class ResponseDTO {
 
-    @JsonProperty("user_id")
+    @NotNull
+    @JsonProperty(value = "user_id")
     private int userId;
+
+    @JsonProperty("emp_id")
+    private int employeeId;
 
     @JsonProperty("first_name")
     private String firstName;
@@ -30,10 +32,6 @@ public class UserRequestDTO {
 
     @JsonProperty("email")
     private String email;
-
-    @JsonIgnore
-    @JsonProperty("password")
-    private String  password;
 
     @JsonProperty("phone")
     private String phone;
@@ -56,8 +54,8 @@ public class UserRequestDTO {
     @JsonProperty("bank_ifsc_code")
     private String banKIfscCode;
 
-    @JsonProperty("active")
-    private boolean active=true;
+    @JsonProperty(value = "active")
+    private boolean active;
 
     @JsonProperty("role")
     private String role;
@@ -65,11 +63,10 @@ public class UserRequestDTO {
     @JsonProperty(value = "image")
     private byte[] image;
 
-    public UserRequestDTO(int userId,String email, String password) {
-        this.userId=userId;
-        this.email=email;
-        this.password=password;
-    }
+    @JsonProperty(value = "dept_id")
+    private int departmentId;
 
+    @JsonProperty(value = "salary_id")
+    private int salaryId;
 
 }

@@ -2,11 +2,13 @@ package com.example.miniproject.controller;
 
 import com.example.miniproject.mapper.Mapper;
 import com.example.miniproject.mapper.UpdateMapper;
-import com.example.miniproject.models.dto.UserRequestDTO;
-import com.example.miniproject.models.dto.UserResponseDTO;
+import com.example.miniproject.models.dto.UserDTO;
+import com.example.miniproject.models.dto.ResponseDTO;
 import com.example.miniproject.models.entity.User;
 import com.example.miniproject.repository.UserRepository;
 import com.example.miniproject.service.UserService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,27 +48,29 @@ public class UserController {
 
     //user create account
     @PostMapping(path = "/sign-up")
-    public ResponseEntity<?> createAccount(@Valid @RequestBody UserRequestDTO userRequestDTO) {
-        User user = userService.saveUser(userRequestDTO);
+    public ResponseEntity<?> createAccount(@Valid @RequestBody UserDTO userDTO) {
+        User user = userService.saveUser(userDTO);
         //user returns null when Account already exists.
         if (user == null) {
             return new ResponseEntity<>("Account already exists. Please Login", HttpStatus.OK);
         } else {
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole(),user.getImage());
-            return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
+            ModelMapper modelMapper = new ModelMapper();
+            ResponseDTO responseDTO = modelMapper.map(user,ResponseDTO.class);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         }
     }
 
     //user login
     @PostMapping(path = "/login")
-    public ResponseEntity<?> loginAccount(@Valid @RequestBody UserRequestDTO userRequestDTO) {
+    public ResponseEntity<?> loginAccount(@Valid @RequestBody UserDTO userDTO) {
         //check if email exists or not
-        if (userRepository.existsByEmail(userRequestDTO.getEmail())) {
-            User user = userRepository.findByEmail(userRequestDTO.getEmail());
-            UserResponseDTO userResponseDTO = new UserResponseDTO(user.getUserId(), user.getFirstName(), user.getLastName(), user.getGender(), user.getEmail(), user.getPhone(), user.getAadharNumber(), user.getPanNumber(), user.getAddress(), user.getBankName(), user.getBankAccountNumber(), user.getBanKIfscCode(), user.isActive(),user.getRole(),user.getImage());
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            User user = userRepository.findByEmail(userDTO.getEmail());
+            ModelMapper modelMapper = new ModelMapper();
+            ResponseDTO responseDTO = modelMapper.map(user,ResponseDTO.class);
             //matching passwords
-            if (user.getPassword().equals(userRequestDTO.getPassword())) {
-                return new ResponseEntity<>(userResponseDTO, HttpStatus.OK);
+            if (user.getPassword().equals(userDTO.getPassword())) {
+                return new ResponseEntity<>(responseDTO, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Invalid Password", HttpStatus.NOT_FOUND);
             }
@@ -77,15 +82,17 @@ public class UserController {
 
     //List only Active Users
     @GetMapping(path = "/active")
-    public List<UserResponseDTO> activeUsers() {
+    public List<ResponseDTO> activeUsers() {
         List<User> userList = userRepository.findAllByActive(true);
         //Converting List of Entity to List of DTO
-        return mapper.entityToDtoList(userList);
+        ModelMapper modelMapper = new ModelMapper();
+        Type listType = new TypeToken<List<ResponseDTO>>(){}.getType();
+        return modelMapper.map(userList,listType);
     }
 
     //List of Inactive Users
     @GetMapping(path = "/inactive")
-    public List<UserResponseDTO> inactiveUsers() {
+    public List<ResponseDTO> inactiveUsers() {
         List<User> userList = userRepository.findAllByActive(false);
         //Converting List of Entity to List of DTO
         return mapper.entityToDtoList(userList);
@@ -93,14 +100,14 @@ public class UserController {
 
     //List of Users Credential
     @GetMapping(path = "/credentials")
-    public List<UserRequestDTO> credentials() {
+    public List<UserDTO> credentials() {
         List<User> userList = (List<User>) userRepository.findAll();
-        List<UserRequestDTO> userRequestDTOList = new ArrayList<>();
+        List<UserDTO> userDTOList = new ArrayList<>();
         for (User user : userList) {
-            UserRequestDTO userRequestDTO = new UserRequestDTO(user.getUserId(), user.getEmail(), user.getPassword());
-            userRequestDTOList.add(userRequestDTO);
+            UserDTO userDTO = new UserDTO(user.getUserId(), user.getEmail(), user.getPassword());
+            userDTOList.add(userDTO);
         }
-        return userRequestDTOList;
+        return userDTOList;
     }
 
 
@@ -111,14 +118,14 @@ public class UserController {
 
         System.out.println("Size : "+ image.getSize());
         if(image.getSize() < 1048000) {
-            UserRequestDTO userRequestDTO = new UserRequestDTO();
-            userRequestDTO.setUserId(user_id);
-            userRequestDTO.setImage(image.getBytes());
-            System.out.println(userRequestDTO);
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserId(user_id);
+            userDTO.setImage(image.getBytes());
+            System.out.println(userDTO);
 
-            userRequestDTO = updateMapper.map(userRequestDTO);
+            userDTO = updateMapper.map(userDTO);
 
-            User user = userRepository.save(mapper.dtoToEntity(userRequestDTO));
+            User user = userRepository.save(mapper.dtoToEntity(userDTO));
             System.out.println(mapper.entityToDto(user));
             return new ResponseEntity<>(mapper.entityToDto(user), HttpStatus.OK);
         }
@@ -129,9 +136,9 @@ public class UserController {
 
     //Update User Details
     @PutMapping("/update-user")
-    public UserResponseDTO updateUser(@RequestBody UserRequestDTO userRequestDTO) {
-        userRequestDTO=updateMapper.map(userRequestDTO);
-        System.out.println(userRequestDTO);
-        return mapper.entityToDto(userService.updateUser(userRequestDTO));
+    public ResponseDTO updateUser(@RequestBody UserDTO userDTO) {
+        userDTO =updateMapper.map(userDTO);
+        System.out.println(userDTO);
+        return mapper.entityToDto(userService.updateUser(userDTO));
     }
 }

@@ -1,6 +1,10 @@
 package com.example.miniproject.models.entity;
 
-public enum Designation {
+import lombok.*;
+
+import java.io.Serializable;
+@Getter
+public enum Designation implements Serializable {
     SDE,
     FOUNDER;
 }

@@ -1,7 +1,13 @@
 package com.example.miniproject.models.entity;
+
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,16 +20,10 @@ public class Department implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dept_id")
-    private int dept_id;
+    private int departmentId;
 
     @Column(name = "dept_name")
-    private String dept_name;
-
-    @Column(name = "comp_id")
-    private String comp_id;
-
-    @Column(name = "manager_id")
-    private String manager_id;
+    private String departmentName;
 
     @Column(name = "location")
     private String location;
@@ -32,11 +32,20 @@ public class Department implements Serializable{
     private String phone;
 
     @Column(name = "active")
-    private int active;
+    private boolean active;
 
-    @Column(name = "created_at")
-    private String created_at;
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private LocalDateTime createDateTime;
 
-    @Column(name = "created_by")
-    private String created_by;
+    @UpdateTimestamp
+    @Column(name = "update_date")
+    private LocalDateTime updateDateTime;
+
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @JoinColumn(name = "comp_id")
+    private Company company;
+
+    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
+    private List<Employee> employeeList;
 }

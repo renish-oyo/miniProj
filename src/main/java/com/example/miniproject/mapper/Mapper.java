@@ -1,6 +1,7 @@
 package com.example.miniproject.mapper;
-import com.example.miniproject.models.dto.UserRequestDTO;
-import com.example.miniproject.models.dto.UserResponseDTO;
+import com.example.miniproject.models.dto.*;
+import com.example.miniproject.models.dto.ResponseDTO;
+import com.example.miniproject.models.entity.Employee;
 import com.example.miniproject.models.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -10,62 +11,91 @@ import java.util.List;
 @Component
 public class Mapper {
 
-    public UserResponseDTO entityToDto(User user){
-        UserResponseDTO userResponseDTO = new UserResponseDTO();
-        userResponseDTO.setUserId(user.getUserId());
-        userResponseDTO.setEmail(user.getEmail());
-        userResponseDTO.setFirstName(user.getFirstName());
-        userResponseDTO.setLastName(user.getLastName());
-        userResponseDTO.setPhone(user.getPhone());
-        userResponseDTO.setActive(user.isActive());
-        userResponseDTO.setAadharNumber(user.getAadharNumber());
-        userResponseDTO.setPanNumber(user.getPanNumber());
-        userResponseDTO.setAddress(user.getAddress());
-        userResponseDTO.setBankName(user.getBankName());
-        userResponseDTO.setBankAccountNumber(user.getBankAccountNumber());
-        userResponseDTO.setBanKIfscCode(user.getBanKIfscCode());
-        userResponseDTO.setGender(user.getGender());
-        userResponseDTO.setRole(user.getRole());
-        userResponseDTO.setImage(user.getImage());
-        return userResponseDTO;
+    public ResponseDTO entityToDto(User user){
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setUserId(user.getUserId());
+        responseDTO.setEmail(user.getEmail());
+        responseDTO.setFirstName(user.getFirstName());
+        responseDTO.setLastName(user.getLastName());
+        responseDTO.setPhone(user.getPhone());
+        responseDTO.setActive(user.isActive());
+        responseDTO.setAadharNumber(user.getAadharNumber());
+        responseDTO.setPanNumber(user.getPanNumber());
+        responseDTO.setAddress(user.getAddress());
+        responseDTO.setBankName(user.getBankName());
+        responseDTO.setBankAccountNumber(user.getBankAccountNumber());
+        responseDTO.setBanKIfscCode(user.getBanKIfscCode());
+        responseDTO.setGender(user.getGender());
+        responseDTO.setImage(user.getImage());
+        return responseDTO;
     }
 
-    public User dtoToEntity(UserRequestDTO userRequestDTO){
+    public User dtoToEntity(UserDTO userDTO){
         User user = new User();
-        user.setUserId(userRequestDTO.getUserId());
-        user.setEmail(userRequestDTO.getEmail());
-        user.setFirstName(userRequestDTO.getFirstName());
-        user.setLastName(userRequestDTO.getLastName());
-        user.setPhone(userRequestDTO.getPhone());
-        user.setPassword(userRequestDTO.getPassword());
-        user.setActive(userRequestDTO.isActive());
-        user.setAddress(userRequestDTO.getAddress());
-        user.setAadharNumber(userRequestDTO.getAadharNumber());
-        user.setPanNumber(userRequestDTO.getPanNumber());
-        user.setBankName(userRequestDTO.getBankName());
-        user.setBankAccountNumber(userRequestDTO.getBankAccountNumber());
-        user.setBanKIfscCode(userRequestDTO.getBanKIfscCode());
-        user.setGender(userRequestDTO.getGender());
-        user.setRole(userRequestDTO.getRole());
-        user.setImage(userRequestDTO.getImage());
+        user.setUserId(userDTO.getUserId());
+        user.setEmail(userDTO.getEmail());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setPhone(userDTO.getPhone());
+        user.setPassword(userDTO.getPassword());
+        user.setActive(userDTO.isActive());
+        user.setAddress(userDTO.getAddress());
+        user.setAadharNumber(userDTO.getAadharNumber());
+        user.setPanNumber(userDTO.getPanNumber());
+        user.setBankName(userDTO.getBankName());
+        user.setBankAccountNumber(userDTO.getBankAccountNumber());
+        user.setBanKIfscCode(userDTO.getBanKIfscCode());
+        user.setGender(userDTO.getGender());
+        user.setImage(userDTO.getImage());
         return user;
     }
 
+    public Employee employeeDtoToEmployee(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        employee.setEmployeeId(employeeDTO.getEmployeeId());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employee.setPhone(employeeDTO.getPhone());
+        employee.setPassword(employeeDTO.getPassword());
+        employee.setActive(employeeDTO.isActive());
+        employee.setAddress(employeeDTO.getAddress());
+        employee.setAadharNumber(employeeDTO.getAadharNumber());
+        employee.setPanNumber(employeeDTO.getPanNumber());
+        employee.setBankName(employeeDTO.getBankName());
+        employee.setBankAccountNumber(employeeDTO.getBankAccountNumber());
+        employee.setBanKIfscCode(employeeDTO.getBanKIfscCode());
+        employee.setGender(employeeDTO.getGender());
+        employee.setImage(employeeDTO.getImage());
+        return employee;
+    }
+
+
     // map List of Entity to List of DTO
-    public List<UserResponseDTO> entityToDtoList(List<User> userList){
-        List<UserResponseDTO> userResponseDTOList = new ArrayList<>();
+    public List<ResponseDTO> entityToDtoList(List<User> userList){
+        List<ResponseDTO> responseDTOList = new ArrayList<>();
         for (User user : userList) {
-            userResponseDTOList.add(entityToDto(user));
+            responseDTOList.add(entityToDto(user));
         }
-        return userResponseDTOList;
+        return responseDTOList;
     }
 
     //map List of DTO to List of Entity
-    public List<User> dtoToEntityList(List<UserRequestDTO> userRequestDTOList){
+    public List<User> dtoToEntityList(List<UserDTO> userDTOList){
         List<User> userList = new ArrayList<>();
-        for(UserRequestDTO userRequestDTO : userRequestDTOList){
-            userList.add(dtoToEntity(userRequestDTO));
+        for (UserDTO userDto : userDTOList)
+        {
+            userList.add(dtoToEntity(userDto));
         }
         return userList;
+    }
+
+    public List<Employee> employeeDtoToEmployeeList(List<EmployeeDTO> employeeDTOList){
+        List<Employee> employeeList = new ArrayList<>();
+        for (EmployeeDTO employeeDTO: employeeDTOList)
+        {
+            employeeList.add(employeeDtoToEmployee(employeeDTO));
+        }
+        return employeeList;
     }
 }

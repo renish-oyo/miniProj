@@ -1,8 +1,12 @@
 package com.example.miniproject.models.entity;
+
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -14,11 +18,12 @@ import java.util.List;
 @Table(name="company")
 public class Company implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comp_id")
-    private int comp_id;
+    private int companyId;
 
     @Column(name = "comp_name")
-    private String comp_name;
+    private String companyName;
 
     @Column(name = "location")
     private String location;
@@ -33,12 +38,16 @@ public class Company implements Serializable {
     private String revenue;
 
     @Column(name = "active")
-    private int active;
+    private boolean active;
 
-    @Column(name = "created_at")
-    private Date created_at;
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private LocalDateTime createDateTime;
 
-    @Column(name = "created_by")
-    private String created_by;
+    @UpdateTimestamp
+    @Column(name = "update_date")
+    private LocalDateTime updateDateTime;
 
+    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY)
+    private List<Department> departmentList;
 }

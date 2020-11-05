@@ -1,7 +1,11 @@
 package com.example.miniproject.models.entity;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,21 +16,22 @@ import java.io.Serializable;
 @Table(name="salary")
 public class Salary implements Serializable {
     @Id
-    @Column(name = "sn")
-    private int sn;
-
-    @Column(name = "emp_id")
-    private String emp_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "salary_id")
+    private int salaryId;
 
     @Column(name = "salary_amount")
-    private int salary_amount;
+    private String salaryAmount;
 
     @Column(name = "active")
-    private int active;
+    private boolean active=true;
 
-    @Column(name = "created_at")
-    private String created_at;
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private LocalDateTime createDateTime;
 
-    @Column(name = "created_by")
-    private String created_by;
+    @UpdateTimestamp
+    @Column(name = "update_date")
+    private LocalDateTime updateDateTime;
+
 }

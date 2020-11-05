@@ -1,17 +1,16 @@
 package com.example.miniproject.models.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDTO {
 
-public class UserResponseDTO {
     @JsonProperty("user_id")
     private int userId;
 
@@ -26,6 +25,10 @@ public class UserResponseDTO {
 
     @JsonProperty("email")
     private String email;
+
+    @JsonIgnore
+    @JsonProperty("password")
+    private String  password;
 
     @JsonProperty("phone")
     private String phone;
@@ -48,8 +51,8 @@ public class UserResponseDTO {
     @JsonProperty("bank_ifsc_code")
     private String banKIfscCode;
 
-    @JsonProperty(value = "active")
-    private boolean active;
+    @JsonProperty("active")
+    private boolean active=true;
 
     @JsonProperty("role")
     private String role;
@@ -57,4 +60,9 @@ public class UserResponseDTO {
     @JsonProperty(value = "image")
     private byte[] image;
 
+    public UserDTO(int userId, String email, String password) {
+        this.userId=userId;
+        this.email=email;
+        this.password=password;
+    }
 }
