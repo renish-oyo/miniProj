@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface CityRepo extends CrudRepository<City,Integer> {
-    List<City> findCitiesByStateStateId(int state_id);
+    List<City> findByStateStateId(int state_id);
 }

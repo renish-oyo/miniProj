@@ -22,6 +22,7 @@ public class State implements Serializable {
     @Column(name = "state_name")
     private String stateName;
 
+    @ToString.Exclude
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Country country;
