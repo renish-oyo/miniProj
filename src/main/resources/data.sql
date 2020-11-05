@@ -1,6 +1,6 @@
-INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, location, phone, revenue, update_date) VALUES (1, true, 'OYO Rooms', '2020-11-04 16:48:31.087109', 'www.oyorooms.com', 'Gurugram,Haryana,India', '987564332', '$10 Billion', '2020-11-04 16:48:31.087159');
-INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, location, phone, revenue, update_date) VALUES (2, true, 'Google', '2020-11-04 16:48:44.455611', 'www.google.com', 'Hyderabad,India', '787564332', '$40 Billion', '2020-11-04 16:48:44.455634');
-INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, location, phone, revenue, update_date) VALUES (3, true, 'Swiggy', '2020-11-04 16:49:13.832225', 'www.swiggy.com', 'Delhi,India', '987564332', '$2 Billion', '2020-11-04 16:49:13.832248');
+INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, street, city, state, country, phone, revenue, update_date) VALUES (1, true, 'OYO Rooms', '2020-11-04 16:48:31.087109', 'www.oyorooms.com', 'Sector-69', 'Gurugram', 'Haryana' ,'India', '987564332', '$10 Billion', '2020-11-04 16:48:31.087159');
+INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, street, city, state, country, phone, revenue, update_date) VALUES (2, true, 'Google', '2020-11-04 16:48:44.455611', 'www.google.com', 'Sector-15', 'Hyderabad','Gujarat','India', '787564332', '$40 Billion', '2020-11-04 16:48:44.455634');
+INSERT INTO public.company (comp_id, active, comp_name, create_date, domain, street, city, state, country, phone, revenue, update_date) VALUES (3, true, 'Swiggy', '2020-11-04 16:49:13.832225', 'www.swiggy.com', 'Laxmi Bazar','Delhi','Delhi','India', '987564332', '$2 Billion', '2020-11-04 16:49:13.832248');
 
 INSERT INTO public.department (dept_id, active, create_date, dept_name, location, phone, update_date, comp_id) VALUES (1, true, '2020-11-04 17:10:35.980702', 'OYO HR', 'Gurugram,India', '787564311', '2020-11-04 17:10:35.980771', 1);
 INSERT INTO public.department (dept_id, active, create_date, dept_name, location, phone, update_date, comp_id) VALUES (2, true, '2020-11-04 17:11:14.480628', 'OYO Finance', 'Gurugram,India', '787564311', '2020-11-04 17:11:14.480650', 1);
@@ -17,9 +17,12 @@ INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update
 INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (3, true, '2020-11-04 20:44:03.798146', '250000', '2020-11-04 20:44:03.798167');
 INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (4, true, '2020-11-04 20:44:13.109302', '320000', '2020-11-04 20:44:13.109324');
 
-INSERT INTO public.employee (emp_id, aadhar_number, active, address, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id) VALUES (1, '0348671262223', true, 'Prayag,UP,India', 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:03:45.903561', 'SDE', 'renish@oyo.com', 'Renish', 'male', null, 'singh', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:03:45.903605', 1, 1);
-INSERT INTO public.employee (emp_id, aadhar_number, active, address, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id) VALUES (2, '0348671262223', true, 'Prayag,UP,India', 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:04:48.494026', 'SDE', 'vishal@gmail.com', 'Vishal', 'male', null, 'Shukla', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:04:48.494050', 4, 2);
-INSERT INTO public.employee (emp_id, aadhar_number, active, address, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id) VALUES (3, '0348671262223', true, 'Prayag,UP,India', 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:05:50.572532', 'SDE', 'abhi@swiggy.com', 'Abhishek', 'male', null, 'Pandey', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:05:50.572555', 7, 1);
+INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (1, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:03:45.903561', 'SDE', 'renish@oyo.com', 'Renish', 'male', null, 'singh', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:03:45.903605', 1, 1, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
+
+INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (2, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:04:48.494026', 'SDE', 'vishal@gmail.com', 'Vishal', 'male', null, 'Shukla', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:04:48.494050', 4, 2, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
+
+INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (3, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:05:50.572532', 'SDE', 'abhi@swiggy.com', 'Abhishek', 'male', null, 'Pandey', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:05:50.572555', 7, 1, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
+
 
 insert into countries values
 (1,'America'),
@@ -45,14 +48,17 @@ values (4, 'Jharkhand', 7);
 insert into states
 values (5, 'Kerala', 7);
 
-insert into cities values
-(1,'Visakhapatnam',1),
-(2,'Tirupati',1),
-(3,'Patna',2),
-(4,'Gaya',2),
-(5,'Gurugram',3),
-(6,'Faridabad',3),
-(7,'Ranchi',4),
-(8,'Dhanbad',4),
-(9,'Kochi',5),
-(10,'Kannur',5);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (1, 'Visakhapatnam', 1);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (2, 'Tirupati', 1);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (3, 'Patna', 2);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (4, 'Gaya', 2);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (5, 'Gurugram', 3);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (6, 'Faridabad', 3);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (7, 'Ranchi', 4);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (8, 'Dhanbad', 4);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (9, 'Kochi', 5);
+INSERT INTO public.cities (city_id, city_name, state_id) VALUES (10, 'Kannur', 5);
+
+INSERT INTO public.users (user_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, city, country, designation, email, first_name, gender, image, last_name, pan_number, password, phone, state, street) VALUES (2, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', 'Prayagraj', 'India', 'SDE', 'rahul@oyo.com', 'Rahul', 'male', null, 'Balaji', 'MR3ESD3E3', '1111', '97634272342', 'UP', 'Teliyarganj');
+INSERT INTO public.users (user_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, city, country, designation, email, first_name, gender, image, last_name, pan_number, password, phone, state, street) VALUES (3, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', 'Prayagraj', 'India', 'SDE', 'ashu@oyo.com', 'Ashutosh', 'male', null, 'Jamadari', 'MR3ESD3E3', '1111', '97634272342', 'UP', 'Teliyarganj');
+INSERT INTO public.users (user_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, city, country, designation, email, first_name, gender, image, last_name, pan_number, password, phone, state, street) VALUES (1, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', 'Prayagraj', 'India', 'SDE', 'renish@oyo.com', 'Renish', 'male', null, 'Singh', 'MR3ESD3E3', '1111', '97634272342', 'UP', 'Teliyarganj');

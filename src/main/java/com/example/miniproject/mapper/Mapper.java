@@ -21,12 +21,16 @@ public class Mapper {
         responseDTO.setActive(user.isActive());
         responseDTO.setAadharNumber(user.getAadharNumber());
         responseDTO.setPanNumber(user.getPanNumber());
-        responseDTO.setAddress(user.getAddress());
+        responseDTO.setCity(user.getCity());
+        responseDTO.setStreet(user.getStreet());
+        responseDTO.setState(user.getState());
+        responseDTO.setCountry(user.getCountry());
         responseDTO.setBankName(user.getBankName());
         responseDTO.setBankAccountNumber(user.getBankAccountNumber());
         responseDTO.setBanKIfscCode(user.getBanKIfscCode());
         responseDTO.setGender(user.getGender());
         responseDTO.setImage(user.getImage());
+        responseDTO.setDesignation(user.getDesignation());
         return responseDTO;
     }
 
@@ -39,7 +43,10 @@ public class Mapper {
         user.setPhone(userDTO.getPhone());
         user.setPassword(userDTO.getPassword());
         user.setActive(userDTO.isActive());
-        user.setAddress(userDTO.getAddress());
+        user.setStreet(userDTO.getStreet());
+        user.setCity(userDTO.getCity());
+        user.setState(userDTO.getState());
+        user.setCountry(userDTO.getCountry());
         user.setAadharNumber(userDTO.getAadharNumber());
         user.setPanNumber(userDTO.getPanNumber());
         user.setBankName(userDTO.getBankName());
@@ -47,6 +54,7 @@ public class Mapper {
         user.setBanKIfscCode(userDTO.getBanKIfscCode());
         user.setGender(userDTO.getGender());
         user.setImage(userDTO.getImage());
+        user.setDesignation(userDTO.getDesignation());
         return user;
     }
 
@@ -59,7 +67,10 @@ public class Mapper {
         employee.setPhone(employeeDTO.getPhone());
         employee.setPassword(employeeDTO.getPassword());
         employee.setActive(employeeDTO.isActive());
-        employee.setAddress(employeeDTO.getAddress());
+        employee.setStreet(employeeDTO.getStreet());
+        employee.setCity(employeeDTO.getCity());
+        employee.setState(employeeDTO.getState());
+        employee.setCountry(employeeDTO.getCountry());
         employee.setAadharNumber(employeeDTO.getAadharNumber());
         employee.setPanNumber(employeeDTO.getPanNumber());
         employee.setBankName(employeeDTO.getBankName());
@@ -67,6 +78,7 @@ public class Mapper {
         employee.setBanKIfscCode(employeeDTO.getBanKIfscCode());
         employee.setGender(employeeDTO.getGender());
         employee.setImage(employeeDTO.getImage());
+        employee.setDesignation(employeeDTO.getDesignation());
         return employee;
     }
 

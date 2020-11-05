@@ -40,8 +40,17 @@ public class User implements Serializable {
     @Column(name="pan_number")
     private String panNumber;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name="state")
+    private String state;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "bank_name")
     private String bankName;
@@ -55,8 +64,9 @@ public class User implements Serializable {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "designation")
+    @Enumerated(EnumType.STRING)
+    private Designation designation;
 
     @Lob
     @Column(name = "image")

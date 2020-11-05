@@ -1,5 +1,6 @@
 package com.example.miniproject.models.dto;
 
+import com.example.miniproject.models.entity.Designation;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -42,8 +43,17 @@ public class ResponseDTO {
     @JsonProperty("pan_number")
     private String panNumber;
 
-    @JsonProperty("address")
-    private String address;
+    @JsonProperty(value = "street")
+    private String street;
+
+    @JsonProperty(value = "city")
+    private String city;
+
+    @JsonProperty(value="state")
+    private String state;
+
+    @JsonProperty(value = "country")
+    private String country;
 
     @JsonProperty("bank_name")
     private String bankName;
@@ -57,8 +67,8 @@ public class ResponseDTO {
     @JsonProperty(value = "active")
     private boolean active;
 
-    @JsonProperty("role")
-    private String role;
+    @JsonProperty("designation")
+    private Designation designation;
 
     @JsonProperty(value = "image")
     private byte[] image;
@@ -68,5 +78,4 @@ public class ResponseDTO {
 
     @JsonProperty(value = "salary_id")
     private int salaryId;
-
 }

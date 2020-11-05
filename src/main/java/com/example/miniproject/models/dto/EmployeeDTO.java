@@ -48,8 +48,17 @@ public class EmployeeDTO {
     @JsonProperty("pan_number")
     private String panNumber;
 
-    @JsonProperty("address")
-    private String address;
+    @JsonProperty(value = "street")
+    private String street;
+
+    @JsonProperty(value = "city")
+    private String city;
+
+    @JsonProperty(value="state")
+    private String state;
+
+    @JsonProperty(value = "country")
+    private String country;
 
     @JsonProperty("bank_name")
     private String bankName;

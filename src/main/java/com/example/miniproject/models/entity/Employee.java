@@ -45,8 +45,17 @@ public class Employee implements Serializable{
     @Column(name="pan_number")
     private String panNumber;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name="state")
+    private String state;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "bank_name")
     private String bankName;

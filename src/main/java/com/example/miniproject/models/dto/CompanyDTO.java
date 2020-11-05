@@ -21,8 +21,17 @@ public class CompanyDTO {
     @JsonProperty(value = "comp_name")
     private String companyName;
 
-    @JsonProperty(value = "location")
-    private String location;
+    @JsonProperty(value = "street")
+    private String street;
+
+    @JsonProperty(value = "city")
+    private String city;
+
+    @JsonProperty(value="state")
+    private String state;
+
+    @JsonProperty(value = "country")
+    private String country;
 
     @JsonProperty(value ="domain" )
     private String domain;

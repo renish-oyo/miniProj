@@ -35,8 +35,17 @@ public class UpdateMapper {
         if(userDTO.getPanNumber()==null) {
             userDTO.setPanNumber(user.get().getPanNumber());
         }
-        if(userDTO.getAddress()==null) {
-            userDTO.setAddress(user.get().getAddress());
+        if(userDTO.getStreet()==null) {
+            userDTO.setStreet(user.get().getStreet());
+        }
+        if(userDTO.getCity()==null) {
+            userDTO.setCity(user.get().getCity());
+        }
+        if(userDTO.getState()==null) {
+            userDTO.setState(user.get().getState());
+        }
+        if(userDTO.getCountry()==null) {
+            userDTO.setCountry(user.get().getCountry());
         }
         if(userDTO.getBankAccountNumber()==null) {
             userDTO.setBankAccountNumber(user.get().getBankAccountNumber());
@@ -53,8 +62,8 @@ public class UpdateMapper {
         if(userDTO.getPhone()==null) {
             userDTO.setPhone(user.get().getPhone());
         }
-        if(userDTO.getRole()==null){
-            userDTO.setRole(user.get().getRole());
+        if(userDTO.getDesignation()==null){
+            userDTO.setDesignation(user.get().getDesignation());
         }
         if(userDTO.getImage()==null){
             userDTO.setImage(user.get().getImage());

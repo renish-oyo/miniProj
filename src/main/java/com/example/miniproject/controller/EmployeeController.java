@@ -7,9 +7,12 @@ import com.example.miniproject.models.entity.Employee;
 import com.example.miniproject.repository.EmployeeRepo;
 import com.example.miniproject.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.lang.reflect.Type;
+import java.util.List;
 
 
 @RestController
@@ -40,4 +43,14 @@ public class EmployeeController {
         responseDTO = modelMapper.map(employee,ResponseDTO.class);
         return responseDTO;
     }
+
+    @GetMapping(path = "all")
+    public List<ResponseDTO> fetchAllEmployees(){
+        List<Employee> employeeList = (List<Employee>) employeeRepo.findAll();
+        ModelMapper modelMapper = new ModelMapper();
+        Type listType = new TypeToken<List<ResponseDTO>>(){}.getType();
+        List<ResponseDTO> responseDTOList = modelMapper.map(employeeList,listType);
+        return responseDTOList;
+    }
+
 }

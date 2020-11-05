@@ -1,7 +1,9 @@
 package com.example.miniproject.models.dto;
 
+import com.example.miniproject.models.entity.Designation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.*;
 
 @Data
@@ -39,8 +41,17 @@ public class UserDTO {
     @JsonProperty("pan_number")
     private String panNumber;
 
-    @JsonProperty("address")
-    private String address;
+    @JsonProperty(value = "street")
+    private String street;
+
+    @JsonProperty(value = "city")
+    private String city;
+
+    @JsonProperty(value="state")
+    private String state;
+
+    @JsonProperty(value = "country")
+    private String country;
 
     @JsonProperty("bank_name")
     private String bankName;
@@ -54,8 +65,8 @@ public class UserDTO {
     @JsonProperty("active")
     private boolean active=true;
 
-    @JsonProperty("role")
-    private String role;
+    @JsonProperty("designation")
+    private Designation designation;
 
     @JsonProperty(value = "image")
     private byte[] image;

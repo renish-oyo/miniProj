@@ -55,13 +55,12 @@ public class LocationController {
     }
 
     @GetMapping(path = "/cities")
-    public List<CityDTO> fetchCities(@RequestParam int state_id){
-        List<City> cityList = cityRepo.findByStateStateId(state_id);
-
+    public List<CityDTO> fetchCities(@RequestParam int country_id,@RequestParam int state_id){
+        List<City> cityList = cityRepo.findCitiesByStateStateId(state_id);
+        System.out.println(cityList);
         // MAPPING State_LIST TO StateDTO_LIST
         ModelMapper modelMapper = new ModelMapper();
         Type listType = new TypeToken<List<CityDTO>>(){}.getType();
         return modelMapper.map(cityList,listType);
     }
-
 }

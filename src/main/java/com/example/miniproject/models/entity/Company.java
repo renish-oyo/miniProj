@@ -25,8 +25,17 @@ public class Company implements Serializable {
     @Column(name = "comp_name")
     private String companyName;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name="state")
+    private String state;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name ="domain" )
     private String domain;
