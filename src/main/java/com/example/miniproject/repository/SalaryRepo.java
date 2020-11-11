@@ -14,6 +14,7 @@ public interface SalaryRepo extends CrudRepository<Salary,Integer> {
     @Query("update Salary s set s.active=false where s.salaryId=?1")
     void setSalaryInactive(int salary_id);
 
-//    @Query(value = "update salary set salary_amount = :salary_amount + :incrementPercent  ",nativeQuery = true);
-//    void salaryIncrement(int deptId,int incrementPercent);
+    @Modifying
+    @Query("update Salary s set s.salaryAmount= (s.salaryAmount + s.salaryAmount * ?2) where  s.department.departmentId=?1")
+    void salaryIncrement(int deptId,float incrementPercent);
 }

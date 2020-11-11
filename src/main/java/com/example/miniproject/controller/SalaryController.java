@@ -76,4 +76,12 @@ public class SalaryController {
         }
     }
 
+    //INCREMENT SALARY
+    @PutMapping("/increment-salary")
+    public String incrementSalary(@RequestParam("dept_id") int deptId,@RequestParam("increment_percent") float incrementPercent){
+        incrementPercent=(incrementPercent/100);
+        System.out.println(incrementPercent);
+        salaryRepo.salaryIncrement(deptId,incrementPercent);
+        return "Salary Incremented!";
+    }
 }

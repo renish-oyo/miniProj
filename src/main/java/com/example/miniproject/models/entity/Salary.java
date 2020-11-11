@@ -1,4 +1,5 @@
 package com.example.miniproject.models.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,7 +23,7 @@ public class Salary implements Serializable {
     private int salaryId;
 
     @Column(name = "salary_amount")
-    private String salaryAmount;
+    private float salaryAmount;
 
     @Column(name = "active")
     private boolean active=true;
@@ -37,5 +38,6 @@ public class Salary implements Serializable {
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "dept_id")
+    @JsonIgnore
     private Department department;
 }

@@ -80,7 +80,7 @@ public class CompanyController {
 
     @GetMapping("/all-dataset")
     public List<Company> listPage(){
-        Pageable pageable = PageRequest.of(0,1);
+        Pageable pageable = PageRequest.of(0,5);
         Page<Company> companyPage=companyRepo.findAll(pageable);
         return companyPage.getContent();
     }

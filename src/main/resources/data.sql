@@ -12,16 +12,16 @@ INSERT INTO public.department (dept_id, active, create_date, dept_name, location
 INSERT INTO public.department (dept_id, active, create_date, dept_name, location, phone, update_date, comp_id) VALUES (8, true, '2020-11-04 17:13:05.468803', 'Swiggy HR', 'Hyderbad,India', '9787564311', '2020-11-04 17:13:05.468825', 3);
 INSERT INTO public.department (dept_id, active, create_date, dept_name, location, phone, update_date, comp_id) VALUES (9, true, '2020-11-04 17:13:18.340818', 'Swiggy CRM', 'Hyderbad,India', '9787564311', '2020-11-04 17:13:18.340877', 3);
 
-INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (1, true, '2020-11-04 20:43:43.719815', '75000', '2020-11-04 20:43:43.720109');
-INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (2, true, '2020-11-04 20:43:52.568130', '150000', '2020-11-04 20:43:52.568162');
-INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (3, true, '2020-11-04 20:44:03.798146', '250000', '2020-11-04 20:44:03.798167');
-INSERT INTO public.salary (salary_id, active, create_date, salary_amount, update_date) VALUES (4, true, '2020-11-04 20:44:13.109302', '320000', '2020-11-04 20:44:13.109324');
+INSERT INTO public.salary (salary_id, active, create_date, dept_id, salary_amount, update_date) VALUES (1, true, '2020-11-04 20:43:43.719815', 1, '75000', '2020-11-04 20:43:43.720109');
+INSERT INTO public.salary (salary_id, active, create_date, dept_id, salary_amount, update_date) VALUES (2, true, '2020-11-04 20:43:52.568130', 4, '150000', '2020-11-04 20:43:52.568162');
+INSERT INTO public.salary (salary_id, active, create_date, dept_id, salary_amount, update_date) VALUES (3, true, '2020-11-04 20:44:03.798146', 7,'250000', '2020-11-04 20:44:03.798167');
+INSERT INTO public.salary (salary_id, active, create_date, dept_id, salary_amount, update_date) VALUES (4, true, '2020-11-04 20:44:13.109302', 1, '320000', '2020-11-04 20:44:13.109324');
 
 INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (1, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:03:45.903561', 'SDE', 'renish@oyo.com', 'Renish', 'male', null, 'singh', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:03:45.903605', 1, 1, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
 
 INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (2, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:04:48.494026', 'SDE', 'vishal@gmail.com', 'Vishal', 'male', null, 'Shukla', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:04:48.494050', 4, 2, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
 
-INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (3, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:05:50.572532', 'SDE', 'abhi@swiggy.com', 'Abhishek', 'male', null, 'Pandey', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:05:50.572555', 7, 1, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
+INSERT INTO public.employee (emp_id, aadhar_number, active, bank_ifsc_code, bank_account_number, bank_name, create_date, designation, email, first_name, gender, image, last_name, pan_number, password, phone, update_date, dept_id, salary_id, city, country, state, street) VALUES (3, '0348671262223', true, 'SBIN7263', '73461026416123', 'SBI', '2020-11-05 10:05:50.572532', 'SDE', 'abhi@swiggy.com', 'Abhishek', 'male', null, 'Pandey', 'MR3ESD3E3', '1111', '97634272342', '2020-11-05 10:05:50.572555', 7, 3, 'Prayagraj', 'India', 'UP', 'Teliyarganj');
 
 
 insert into countries values

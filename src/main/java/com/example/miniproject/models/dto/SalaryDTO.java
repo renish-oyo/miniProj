@@ -19,7 +19,10 @@ public class SalaryDTO {
     private int salaryId;
 
     @JsonProperty(value = "salary_amount")
-    private String salaryAmount;
+    private float salaryAmount;
+
+    @JsonProperty("dept_id")
+    private int departmentId;
 
     @JsonProperty(value = "active")
     private boolean active=true;
