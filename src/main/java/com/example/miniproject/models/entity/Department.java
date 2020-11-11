@@ -1,5 +1,6 @@
 package com.example.miniproject.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -44,8 +45,12 @@ public class Department implements Serializable{
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "comp_id")
+    @JsonIgnore // To Solve "Jackson infinite recursion problem" during pagination
     private Company company;
 
-    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department",fetch = FetchType.EAGER)
     private List<Employee> employeeList;
+
+    @OneToMany(mappedBy = "department",fetch =FetchType.LAZY)
+    private List<Salary> salaryList;
 }

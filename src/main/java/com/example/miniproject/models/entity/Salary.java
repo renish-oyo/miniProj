@@ -1,5 +1,6 @@
 package com.example.miniproject.models.entity;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -34,4 +35,7 @@ public class Salary implements Serializable {
     @Column(name = "update_date")
     private LocalDateTime updateDateTime;
 
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @JoinColumn(name = "dept_id")
+    private Department department;
 }

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmployeeDTO {
 
-    @JsonProperty("employee_id")
+    @JsonProperty("emp_id")
     private int employeeId;
 
     @JsonProperty("first_name")

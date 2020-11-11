@@ -49,6 +49,7 @@ public class UserController {
     //user create account
     @PostMapping(path = "/sign-up")
     public ResponseEntity<?> createAccount(@Valid @RequestBody UserDTO userDTO) {
+        System.out.println(userDTO);
         User user = userService.saveUser(userDTO);
         //user returns null when Account already exists.
         if (user == null) {
@@ -123,7 +124,7 @@ public class UserController {
             userDTO.setImage(image.getBytes());
             System.out.println(userDTO);
 
-            userDTO = updateMapper.map(userDTO);
+            userDTO = updateMapper.userMap(userDTO);
 
             User user = userRepository.save(mapper.dtoToEntity(userDTO));
             System.out.println(mapper.entityToDto(user));
@@ -135,9 +136,9 @@ public class UserController {
     }
 
     //Update User Details
-    @PutMapping("/update-user")
+    @PutMapping("/update")
     public ResponseDTO updateUser(@RequestBody UserDTO userDTO) {
-        userDTO =updateMapper.map(userDTO);
+        userDTO =updateMapper.userMap(userDTO);
         System.out.println(userDTO);
         return mapper.entityToDto(userService.updateUser(userDTO));
     }

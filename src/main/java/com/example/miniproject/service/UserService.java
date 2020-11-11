@@ -32,24 +32,12 @@ public class UserService {
         }
     }
 
-    //SAVE EMPLOYEE
-    public Employee saveEmployee(EmployeeDTO employeeDTO){
-        //checking if email already exists //existsByEmail
-        if(!employeeRepo.existsByEmail(employeeDTO.getEmail())){
-            return employeeRepo.save(mapper.employeeDtoToEmployee(employeeDTO));
-        }
-        else {
-            return null;
-        }
-    }
+
 
     // UPDATE USER
     public User updateUser(UserDTO userDTO){
         return userRepository.save(mapper.dtoToEntity(userDTO));
     }
 
-    // UPDATE EMPLOYEE
-    public Employee updateEmployee(EmployeeDTO employeeDTO){
-        return employeeRepo.save(mapper.employeeDtoToEmployee(employeeDTO));
-    }
+
 }

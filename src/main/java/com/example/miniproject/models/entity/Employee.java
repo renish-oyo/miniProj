@@ -1,4 +1,5 @@
 package com.example.miniproject.models.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -87,6 +88,7 @@ public class Employee implements Serializable{
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id")
+    @JsonIgnore // To Solve "Jackson infinite recursion problem" during pagination
     private Department department;
 
     @OneToOne

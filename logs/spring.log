@@ -1,0 +1,29 @@
+2020-11-11 11:02:06.881  INFO 1344 --- [main] c.e.miniproject.MiniprojectApplication   : Starting MiniprojectApplication on oyos-MacBook-Pro.local with PID 1344 (/Users/oyo/Downloads/miniproject/target/classes started by oyo in /Users/oyo/Downloads/miniproject)
+2020-11-11 11:02:06.886  INFO 1344 --- [main] c.e.miniproject.MiniprojectApplication   : No active profile set, falling back to default profiles: default
+2020-11-11 11:02:07.481  INFO 1344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-11 11:02:07.568  INFO 1344 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73ms. Found 8 JPA repository interfaces.
+2020-11-11 11:02:07.980  INFO 1344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2020-11-11 11:02:07.989  INFO 1344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-11-11 11:02:07.989  INFO 1344 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-11 11:02:08.238  INFO 1344 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-11-11 11:02:08.244  INFO 1344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-11-11 11:02:08.245  INFO 1344 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1318 ms
+2020-11-11 11:02:08.389  INFO 1344 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-11 11:02:08.428  INFO 1344 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-11 11:02:08.484  INFO 1344 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-11 11:02:08.504  WARN 1344 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-11 11:02:08.620  INFO 1344 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-11 11:02:08.724  INFO 1344 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: ServletContext resource [/index.html]
+2020-11-11 11:02:08.737  INFO 1344 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-11-11 11:02:08.870  INFO 1344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2020-11-11 11:02:08.873  INFO 1344 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-11-11 11:02:09.000  INFO 1344 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-11-11 11:02:09.024  INFO 1344 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-11 11:02:09.766  WARN 1344 --- [task-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2020-11-11 11:02:09.767  WARN 1344 --- [task-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_fopic1oh5oln2khj8eat6ino0" of relation "employee" does not exist, skipping
+2020-11-11 11:02:09.773  WARN 1344 --- [task-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2020-11-11 11:02:09.773  WARN 1344 --- [task-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
+2020-11-11 11:02:09.787  INFO 1344 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-11 11:02:09.793  INFO 1344 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-11 11:02:10.174  INFO 1344 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-11-11 11:02:10.182  INFO 1344 --- [main] c.e.miniproject.MiniprojectApplication   : Started MiniprojectApplication in 3.664 seconds (JVM running for 9.518)
