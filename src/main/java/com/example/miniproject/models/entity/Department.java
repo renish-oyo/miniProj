@@ -3,6 +3,8 @@ package com.example.miniproject.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -43,14 +45,16 @@ public class Department implements Serializable{
     @Column(name = "update_date")
     private LocalDateTime updateDateTime;
 
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "comp_id")
     @JsonIgnore // To Solve "Jackson infinite recursion problem" during pagination
     private Company company;
 
-    @OneToMany(mappedBy = "department",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department")
+    @Fetch(FetchMode.JOIN)
     private List<Employee> employeeList;
 
-    @OneToMany(mappedBy = "department",fetch =FetchType.LAZY)
+    @OneToMany(mappedBy = "department")
+    @Fetch(FetchMode.JOIN)
     private List<Salary> salaryList;
 }

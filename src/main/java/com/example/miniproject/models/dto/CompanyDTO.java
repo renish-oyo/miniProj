@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.redis.core.RedisHash;
 
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,7 +16,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CompanyDTO {
+public class CompanyDTO implements Serializable {
+
+    private static final long serialVersionUID = 4L;
+
     @JsonProperty(value= "comp_id")
     private int companyId;
 

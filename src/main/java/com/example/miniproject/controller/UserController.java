@@ -112,7 +112,6 @@ public class UserController {
     }
 
 
-
     //upload image to Database
     @PutMapping("/upload")
     public ResponseEntity<?> uploadImage (@RequestParam int user_id,@RequestBody MultipartFile image) throws IOException {

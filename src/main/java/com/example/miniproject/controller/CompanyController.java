@@ -11,6 +11,9 @@ import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -45,6 +49,7 @@ public class CompanyController {
 
     //GET LIST OF ALL COMPANIES
     @GetMapping(path = "/all")
+    @Cacheable(cacheNames = "company")
     public List<CompanyDTO> allCompanies(){
         LOGGER.info("Listed all the companies.");
         List<Company> companyList = (List<Company>) companyRepo.findAll();
@@ -56,6 +61,7 @@ public class CompanyController {
     }
 
     @PutMapping(path = "/update")
+    @CachePut(cacheNames = "company",key = "#companyDTO.companyId")
     public CompanyDTO updateCompany(@RequestBody CompanyDTO companyDTO){
         ModelMapper modelMapper = new ModelMapper();
         Company company = companyRepo.save(modelMapper.map(companyDTO,Company.class));
@@ -63,6 +69,7 @@ public class CompanyController {
     }
 
     @DeleteMapping(path = "/delete")
+    @CacheEvict(cacheNames = "company",key = "#companyId")
     public String deleteCompany(@RequestParam(name = "comp_id") int companyId){
         if(companyRepo.existsById(companyId)){
             Optional<Company> company = companyRepo.findById(companyId);
@@ -79,9 +86,16 @@ public class CompanyController {
     }
 
     @GetMapping("/all-dataset")
+    @Cacheable(cacheNames = "company-dataset")
     public List<Company> listPage(){
         Pageable pageable = PageRequest.of(0,5);
         Page<Company> companyPage=companyRepo.findAll(pageable);
         return companyPage.getContent();
+    }
+
+    @GetMapping("{id}")
+    @Cacheable(cacheNames = "company",key = "#id")
+    public Company getCompanyById(@PathVariable int id){
+        return companyRepo.findById(id).get();
     }
 }

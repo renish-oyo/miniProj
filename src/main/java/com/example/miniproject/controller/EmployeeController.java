@@ -3,8 +3,6 @@ package com.example.miniproject.controller;
 import com.example.miniproject.mapper.UpdateMapper;
 import com.example.miniproject.models.dto.EmployeeDTO;
 import com.example.miniproject.models.dto.ResponseDTO;
-import com.example.miniproject.models.dto.SalaryDTO;
-import com.example.miniproject.models.entity.Company;
 import com.example.miniproject.models.entity.Employee;
 import com.example.miniproject.repository.EmployeeRepo;
 import com.example.miniproject.service.EmployeeService;
@@ -79,5 +77,4 @@ public class EmployeeController {
             return "Employee with Id " + employeeId + " does not exist.";
         }
     }
-
 }

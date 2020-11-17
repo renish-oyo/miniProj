@@ -2,7 +2,10 @@ package com.example.miniproject.models.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +20,9 @@ import java.util.List;
 @Entity
 @Table(name="company")
 public class Company implements Serializable {
+
+    private static final long serialVersionUID = 4L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comp_id")
@@ -57,6 +63,7 @@ public class Company implements Serializable {
     @Column(name = "update_date")
     private LocalDateTime updateDateTime;
 
-    @OneToMany(mappedBy = "company",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company")
+    @Fetch(FetchMode.JOIN)
     private List<Department> departmentList;
 }

@@ -2,6 +2,8 @@ package com.example.miniproject.models.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -16,7 +18,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="employee")
 public class Employee implements Serializable{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
@@ -86,7 +87,8 @@ public class Employee implements Serializable{
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "dept_id")
     @JsonIgnore // To Solve "Jackson infinite recursion problem" during pagination
     private Department department;
