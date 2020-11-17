@@ -9,6 +9,7 @@ import com.example.miniproject.service.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,12 +26,14 @@ public class EmployeeController {
     private final EmployeeRepo employeeRepo;
     private final UpdateMapper updateMapper;
     private final EmployeeService employeeService;
+    private final KafkaTemplate<String,String> kafkaTemplate;
     //Constructor injection is better than field injection
     @Autowired
-    public EmployeeController(EmployeeService employeeService,EmployeeRepo employeeRepo, UpdateMapper updateMapper) {
+    public EmployeeController(EmployeeService employeeService, EmployeeRepo employeeRepo, UpdateMapper updateMapper, KafkaTemplate<String, String> kafkaTemplate) {
         this.employeeService=employeeService;
         this.employeeRepo = employeeRepo;
         this.updateMapper=updateMapper;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     // CREATE NEW EMPLOYEE
@@ -76,5 +79,11 @@ public class EmployeeController {
         } else {
             return "Employee with Id " + employeeId + " does not exist.";
         }
+    }
+
+    @GetMapping("/kafka/{msg}")
+    public String produceMsg(@PathVariable String msg){
+        kafkaTemplate.send("topic1",msg);
+        return msg;
     }
 }
